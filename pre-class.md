@@ -1,60 +1,20 @@
-# **Self-Study Preparation Guide**
+# **Pre-class brief**
 
-**⏳ Estimated Prep Time:** 30–45 minutes
+![hero-pic](./assets/unit-2-7-data-orchestration-testing.png)
 
-Welcome to our flipped-classroom session, where you'll review foundational concepts beforehand to maximize our time for hands-on coding and debugging. This pre-study focuses on mastering Data Quality frameworks like *Great Expectations*, ensuring you are ready to build resilient, production-grade pipelines that handle real-world data failures effectively.
+## Where are we?
 
-## ⚡ Your Self-Study Tasks
+Your automated pipelines are running daily. But last Tuesday, a supplier changed their CSV format and your pipeline loaded garbage data into the warehouse — and nobody noticed until the CFO's dashboard showed negative revenue. You need automated *quality gates* that catch bad data before it reaches the dashboards.
 
-Please complete the following activities before our session.
+## Why this matters
 
-### 📝 Task 1: The "Why" of Data Testing (20 Minutes)
+Data quality is the unsexy, career-defining skill. A pipeline that runs successfully but loads wrong data is *worse* than one that fails loudly. Testing is how you build trust in your data platform. When FreshCart's head of marketing asks "can I trust these numbers?" your answer needs to be backed by automated validation, not a verbal assurance.
 
-**Activity:** Read the **"Part 1 \- Hands-on with Data Testing"** and **"Part 2 \- Testing Dbt"** sections in the provided lesson.md file. Focus on understanding the role of data validation in a modern data stack.
+## Key concepts
 
-**Guiding Questions:**
+**Data Quality Testing with Great Expectations** — Write "expectations" (rules) about your data: this column should never be null, this value should be between 0 and 10,000, this date should not be in the future. These rules run automatically and produce validation reports. An expectation like "order_total must be positive" catches the negative-revenue bug before it hits the dashboard.
 
-* How does automated data testing differ from manual data quality checks you might have done in Excel or SQL?  
-* The text mentions dbt\_utils and dbt-expectations. How do these extend the basic capabilities of dbt?
+**dbt Testing** — dbt's built-in tests cover basics (unique, not_null, accepted_values, relationships). The `dbt_utils` and `dbt-expectations` packages extend this dramatically — range checks, expression validation, cross-column consistency. Testing is integrated into `dbt build`, so every model run includes its quality checks.
 
-### 📝 Task 2: Visualizing the Great Expectations Workflow (25 Minutes)
-
-**Activity:** Open and review the GX\_lessons.ipynb notebook. **You do not need to run the code yet.** Instead, read through the Markdown headers and code comments to trace the logical flow of a GX project.
-
-**Focus your attention on these key components:**
-
-1. **Data Context:** The setup/configuration center.  
-2. **Data Source & Assets:** How GX connects to data (e.g., CSVs or Dataframes).  
-3. **Expectations:** The specific rules we set (e.g., ExpectColumnMaxToBeBetween).  
-4. **Validation Results:** What happens when data fails a test.
-
-**Guiding Questions:**
-
-* Look at the code cell using ExpectColumnMaxToBeBetween. If you had to write a rule for a "Customer Email" column, what expectation might you use?  
-* How does a "Validation Definition" connect your data to your rules?
- 
-### 📝 Task 3 (Optional): Orchestration Conceptual Check
-
-**Activity:** Briefly skim the **"Extra \- Hands-on with Orchestration"** sections in lesson.md.
-
-**Guiding Questions:**
-
-* Why might we need a tool like **Dagster** to manage both Meltano (ingestion) and dbt (transformation)?  
-* What is the benefit of defining a schedule in code (Python) versus clicking a button manually every day?
-
-## 🙌🏻 Active Engagement Strategies
-
-To deepen your retention, try one of the following while you review:
-
-* **Concept Mapping:** Sketch a simple diagram showing the relationship between *Source Data* \-\> *Expectations* \-\> *Validation Results*.  
-* **"Code Commentary":** Select a specific code block from the notebook and write a brief comment explaining, in your own words, exactly what logical step it performs.  
-* **Scenario Matching:** Think of a recent project where data quality was an issue. Which "Expectation" from the reading could have prevented that error?
-
-## 📖 Additional Reading Material
-
-- [What is Data Testing](https://www.montecarlodata.com/blog-data-testing-vs-data-quality-monitoring-vs-data-observability-whats-right-for-your-team/)
-- [Data Testing](https://www.getdbt.com/analytics-engineering/transformation/data-testing)
-
-### 🙋🏻‍♂️ See you in the session\!
-
+**Orchestrating Multi-Tool Pipelines** — In production, your pipeline isn't "run dbt." It's "extract from Postgres, load to BigQuery, run transformations, run tests, alert on failure." Dagster orchestrates this entire chain as a single observable workflow.
 

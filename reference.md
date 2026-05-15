@@ -11,3 +11,10 @@
 - `dbt_utils` and `dbt_expectations` packages
   - https://hub.getdbt.com/dbt-labs/dbt_utils/latest/
   - https://hub.getdbt.com/calogica/dbt_expectations/latest/
+
+## 📖 Additional Reading Material
+
+- [What is Data Testing](https://www.montecarlodata.com/blog-data-testing-vs-data-quality-monitoring-vs-data-observability-whats-right-for-your-team/)
+- [Data Testing](https://www.getdbt.com/analytics-engineering/transformation/data-testing)
+
+
