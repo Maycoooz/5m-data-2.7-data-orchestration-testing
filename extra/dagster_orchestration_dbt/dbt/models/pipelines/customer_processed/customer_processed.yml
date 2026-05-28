@@ -10,10 +10,10 @@ models:
           - unique
           - not_null
       - name: new_last_name
-        description: Customer's last name that we processed
+        description: Customer's last name that we processed # last name should not have a unique test, changed to warn first
         tests:
           - unique:
               arguments:
-                severity: error # accepts only `error` and `warn` default: error
+                severity: warn # accepts only `error` and `warn` default: error
           - not_null
 
